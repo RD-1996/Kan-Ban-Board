@@ -1,0 +1,109 @@
+$sidebarBackgroundColor: #003153;
+
+.header {
+  width: 100%;
+  padding: 1em 0;
+  background-color: #003153;
+  color: white;
+  z-index: 999;
+
+  .logoText {
+    font-size: x-large;
+    cursor: pointer;
+    width: fit-content;
+  }
+
+  .header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+
+    .logout__text {
+      cursor: pointer;
+    }
+  }
+}
+
+.sidebar {
+  color: white;
+  padding: 30px;
+  background-color: $sidebarBackgroundColor;
+  position: absolute;
+  left: calc(-25% - 70px);
+  top: calc(4em + 4px);
+  height: calc(100% - 4em);
+  width: 15%;
+  transition: left 0.4s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 99;
+
+  .header__strip {
+    display: flex;
+  }
+
+  .result__leaderboard-label {
+    font-size: x-large;
+    padding-bottom: 30px;
+    text-align: center;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: medium;
+  }
+
+  td,
+  th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px 12px;
+  }
+
+  .sidebar__body {
+    padding-bottom: 60px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    .leaderboard__table {
+      .menu__item {
+        margin-top: 15px;
+        font-size: large;
+        cursor: pointer;
+        text-transform: capitalize;
+      }
+
+      .menu__item:hover {
+        color: lightgreen;
+      }
+
+      .active {
+        color: lightgreen;
+      }
+    }
+  }
+
+  .close__icon {
+    font-size: 90px;
+  }
+}
+
+.sidebar__body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+@media screen and (max-width: 480px) {
+  .sidebar {
+    width: 40% !important;
+    left: calc(-40% - 70px);
+  }
+}
