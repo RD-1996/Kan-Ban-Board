@@ -8,10 +8,10 @@ const users = [
     id: 1,
   },
   {
-    userName: "ned",
+    userName: "test",
     password: "123456",
-    name: "Ned",
-    email: "ned@stark.com",
+    name: "Test",
+    email: "test@test.com",
     displayPicture: {},
     id: 2,
   },
