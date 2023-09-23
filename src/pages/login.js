@@ -28,7 +28,7 @@ export default function Login() {
     userName: false,
     password: false,
   });
-  const [verified, setVerified] = useState(false);
+  const [verified, setVerified] = useState(true);
 
   const checkLoginValidations = (userName, password) => {
     if (!verified) {
