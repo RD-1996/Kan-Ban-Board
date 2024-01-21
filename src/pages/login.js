@@ -13,6 +13,7 @@ import Alert from "@mui/material/Alert";
 import { AlertTitle } from "@mui/material";
 import "../assets/styles/register.scss";
 import Reaptcha from "reaptcha";
+import background from '../assets/background/background.svg'
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -110,89 +111,99 @@ export default function Login() {
     setVerified(true);
   };
 
-  return (
-    <Container maxWidth="xs" className="login-container">
-      <div className="main-container">
-        <div className="title">Login</div>
-        <form onSubmit={handleLogin} className="form-container">
-          <Grid container spacing={3}>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                id="lastName"
-                label="Username / Email"
-                name="userName"
-                autoComplete="family-name"
-                size="small"
-                error={error?.userName}
-                helperText={error?.userName && "Please Enter Username / Email"}
-              />
-            </Grid>
+  const divStyle = {
+    width: '100%',
+    height: '100vh',
+    background: `url('${background}') no-repeat center center fixed`,
+    backgroundSize: 'cover',
+  };
 
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="new-password"
-                size="small"
-                error={error?.password}
-                helperText={error?.password && "Please Enter Password"}
-              />
+  return (
+    <div style={divStyle}>
+      <Container maxWidth="xs" className="login-container">
+        <div className="main-container">
+          <div className="title">Login</div>
+          <form onSubmit={handleLogin} className="form-container">
+            <Grid container spacing={3}>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  id="lastName"
+                  label="Username / Email"
+                  name="userName"
+                  autoComplete="family-name"
+                  size="small"
+                  error={error?.userName}
+                  helperText={error?.userName && "Please Enter Username / Email"}
+                />
+              </Grid>
+
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="new-password"
+                  size="small"
+                  error={error?.password}
+                  helperText={error?.password && "Please Enter Password"}
+                />
+              </Grid>
             </Grid>
-          </Grid>
-          <Grid container justifyContent="center" sx={{ mt: 4 }}>
-            <Grid item>
-              <Reaptcha
-                sitekey={process.env.REACT_APP_SITE_KEY}
-                onVerify={onVerify}
-              />
+            <Grid container justifyContent="center" sx={{ mt: 4 }}>
+              <Grid item>
+                <Reaptcha
+                  sitekey={process.env.REACT_APP_SITE_KEY}
+                  onVerify={onVerify}
+                />
+              </Grid>
             </Grid>
-          </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Login
-          </Button>
-          <Grid container justifyContent="center">
-            <Grid item>
-              <Link
-                variant="body2"
-                onClick={redirectToRegister}
-                className="helper--text"
-              >
-                Not a member? Register
-              </Link>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Login
+            </Button>
+            <Grid container justifyContent="center">
+              <Grid item>
+                <Link
+                  variant="body2"
+                  onClick={redirectToRegister}
+                  className="helper--text"
+                >
+                  Not a member? Register
+                </Link>
+              </Grid>
             </Grid>
-          </Grid>
-        </form>
-      </div>
-      {alert?.open ? (
-        <Snackbar
-          open={alert?.open}
-          autoHideDuration={6000}
-          anchorOrigin={{
-            vertical: "top",
-            horizontal: "right",
-          }}
-        >
-          <Alert
-            onClose={() => {
-              setAlert(alertInitialState);
+          </form>
+        </div>
+        {alert?.open ? (
+          <Snackbar
+            open={alert?.open}
+            autoHideDuration={6000}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
             }}
-            severity="error"
-            sx={{ width: 200 }}
           >
-            <AlertTitle>Error</AlertTitle>
-            {alert?.message}
-          </Alert>
-        </Snackbar>
-      ) : null}
-    </Container>
+            <Alert
+              onClose={() => {
+                setAlert(alertInitialState);
+              }}
+              severity="error"
+              sx={{ width: 200 }}
+            >
+              <AlertTitle>Error</AlertTitle>
+              {alert?.message}
+            </Alert>
+          </Snackbar>
+        ) : null}
+      </Container>
+    </div>
+
   );
 }

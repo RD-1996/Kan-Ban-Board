@@ -12,6 +12,7 @@ import * as userActions from "../store/reducers/user.slice";
 import { users } from "../data/users";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import "../assets/styles/register.scss";
+import background from '../assets/background/background.svg'
 
 export default function Register() {
   const navigate = useNavigate();
@@ -207,129 +208,139 @@ export default function Register() {
     fileRef.current.value = null;
   };
 
+  const divStyle = {
+    width: '100%',
+    height: '100vh',
+    background: `url('${background}') no-repeat center center fixed`,
+    backgroundSize: 'cover',
+  };
+
+
   return (
-    <Container className="login-container" maxWidth="xs">
-      <div className="main-container">
-        <Typography component="h1" variant="h5">
-          Register
-        </Typography>
-        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                autoComplete="given-name"
-                name="name"
-                required
-                fullWidth
-                id="name"
-                label="Name"
-                autoFocus
-                size="small"
-                error={!!error?.name}
-                helperText={error?.name}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                id="userName"
-                label="Username"
-                name="userName"
-                autoComplete="user-name"
-                size="small"
-                error={!!error?.userName}
-                helperText={error?.userName}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                id="contact"
-                label="Contact Number"
-                name="contact"
-                autoComplete="contact"
-                size="small"
-                type="number"
-                error={!!error?.contact}
-                helperText={error?.contact}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                id="email"
-                label="Email"
-                name="email"
-                autoComplete="email"
-                size="small"
-                error={!!error?.email}
-                helperText={error?.email}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="new-password"
-                size="small"
-                error={!!error?.password}
-                helperText={error?.password}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                name="profile-picture"
-                label="Profile Picture"
-                type="file"
-                id="profile-picture"
-                size="small"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                onChange={onSelectFile}
-                inputRef={fileRef}
-                inputProps={{
-                  accept: "image/*",
-                }}
-              />
-              {selectedFile && (
-                <div className="image--preview__body">
-                  <div>
-                    <HighlightOffIcon onClick={clearFile} className="icon" />
-                  </div>
-                  <img src={preview} className="image" />
+    <div style={divStyle}>
+      <Container className="login-container" maxWidth="xs">
+    <div className="main-container">
+      <Typography component="h1" variant="h5">
+        Register
+      </Typography>
+      <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <TextField
+              autoComplete="given-name"
+              name="name"
+              required
+              fullWidth
+              id="name"
+              label="Name"
+              autoFocus
+              size="small"
+              error={!!error?.name}
+              helperText={error?.name}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              required
+              fullWidth
+              id="userName"
+              label="Username"
+              name="userName"
+              autoComplete="user-name"
+              size="small"
+              error={!!error?.userName}
+              helperText={error?.userName}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              id="contact"
+              label="Contact Number"
+              name="contact"
+              autoComplete="contact"
+              size="small"
+              type="number"
+              error={!!error?.contact}
+              helperText={error?.contact}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              required
+              fullWidth
+              id="email"
+              label="Email"
+              name="email"
+              autoComplete="email"
+              size="small"
+              error={!!error?.email}
+              helperText={error?.email}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="new-password"
+              size="small"
+              error={!!error?.password}
+              helperText={error?.password}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              name="profile-picture"
+              label="Profile Picture"
+              type="file"
+              id="profile-picture"
+              size="small"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              onChange={onSelectFile}
+              inputRef={fileRef}
+              inputProps={{
+                accept: "image/*",
+              }}
+            />
+            {selectedFile && (
+              <div className="image--preview__body">
+                <div>
+                  <HighlightOffIcon onClick={clearFile} className="icon" />
                 </div>
-              )}
-            </Grid>
+                <img src={preview} className="image" />
+              </div>
+            )}
           </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Sign Up
-          </Button>
-          <Grid container justifyContent="center">
-            <Grid item>
-              <Link
-                variant="body2"
-                onClick={redirectToSignIn}
-                className="helper--text"
-              >
-                Already have an account? Sign in
-              </Link>
-            </Grid>
+        </Grid>
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          sx={{ mt: 3, mb: 2 }}
+        >
+          Sign Up
+        </Button>
+        <Grid container justifyContent="center">
+          <Grid item>
+            <Link
+              variant="body2"
+              onClick={redirectToSignIn}
+              className="helper--text"
+            >
+              Already have an account? Sign in
+            </Link>
           </Grid>
-        </Box>
-      </div>
-    </Container>
+        </Grid>
+      </Box>
+    </div>
+  </Container></div>
+    
   );
 }
